@@ -1,0 +1,138 @@
+/* ===== Темы ===== */
+:root,html[data-theme=dark]{
+ --bg:#050506;--pn:rgba(10,10,14,.6);--ln:rgba(255,255,255,.2);
+ --tx:#f4f2f5;--mu:#aaa6b2;--ac:#e0364f;--sk:#f3d3dc;--ok:#5fcf8f;--ng:#ff5a6e;
+ --in:rgba(0,0,0,.45);--bt:rgba(255,255,255,.09);--nv:rgba(6,6,9,.9);
+ --md:#0c0c11;--mdg:rgba(12,12,17,.82);--ov:rgba(0,0,0,.6);--pdbg:rgba(0,0,0,.5);--gl:rgba(255,255,255,.2);
+ --ink:#fff1f4;--hint:#f6c3d0;--hot:#ff6b84;
+ --sel:rgba(224,54,79,.38);--okb:rgba(95,207,143,.3);--ngb:rgba(255,90,110,.3);
+ color-scheme:dark}
+html[data-theme=light]{
+ --bg:#ececee;--pn:rgba(255,255,255,.7);--ln:rgba(70,50,62,.22);
+ --tx:#2b2329;--mu:#6c626a;--ac:#d03a58;--sk:#b8304f;--ok:#25915a;--ng:#d03a4f;
+ --in:rgba(255,255,255,.75);--bt:rgba(255,255,255,.8);--nv:rgba(250,248,250,.93);
+ --md:#f8f6f8;--mdg:rgba(248,246,248,.84);--ov:rgba(40,30,40,.35);--pdbg:rgba(255,255,255,.75);--gl:rgba(60,40,55,.2);
+ --ink:#2a1f27;--hint:#6b5560;--hot:#d03a58;
+ --sel:rgba(208,58,88,.22);--okb:rgba(37,145,90,.22);--ngb:rgba(208,58,79,.2);
+ color-scheme:light}
+
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html,body{margin:0;min-height:100%}
+html{background:var(--bg)}
+body{color:var(--tx);font:15px/1.5 "Noto Sans JP","Hiragino Sans",system-ui,sans-serif;overflow-x:hidden}
+
+/* Фоны тем: две картинки, плавно сменяют друг друга */
+body::before,body::after{content:"";position:fixed;inset:0;z-index:-1;background-size:cover;background-repeat:no-repeat;opacity:0;transition:opacity .6s ease;pointer-events:none}
+body::before{background-image:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.4)),url(../assets/theme-dark.jpg);background-position:left center}
+body::after{background-image:linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.22)),url(../assets/theme-light.jpg);background-position:center bottom}
+html[data-theme=dark] body::before,:root:not([data-theme]) body::before{opacity:1}
+html[data-theme=light] body::after{opacity:1}
+
+/* Лепестки: за стеклянными блоками (сквозь матовое стекло они размыты) */
+#sk{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* Шапка */
+header{position:relative;z-index:1;display:flex;align-items:center;gap:12px;padding:10px 14px;max-width:612px;width:calc(100% - 28px);margin:10px auto 12px;background:var(--pn);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hk{font:700 19px "Noto Serif JP",serif;background:var(--ac);color:#fff;width:36px;height:36px;display:grid;place-items:center;border-radius:5px;transform:rotate(-4deg)}
+header b{font:600 23px "Noto Serif JP","Yu Mincho",serif;letter-spacing:.18em}
+header small{display:block;color:var(--mu);font-size:11px;letter-spacing:.12em}
+.tg{margin-left:auto;width:40px;height:40px;padding:0;border-radius:50%;font-size:20px;line-height:1}
+
+main{position:relative;z-index:1;padding:0 14px 96px;max-width:640px;margin:auto}
+section{display:none}section.on{display:block}
+.p{background:var(--pn);border:1px solid var(--ln);border-radius:14px;padding:12px;margin-bottom:12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+input{width:100%;background:var(--in);border:1px solid var(--ln);border-radius:10px;color:var(--tx);padding:10px;font:inherit;margin:4px 0}
+input[type=range]{padding:0;accent-color:var(--ac)}
+button{font:inherit;color:var(--tx);background:var(--bt);border:1px solid var(--ln);border-radius:10px;padding:10px 14px}
+.b{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.w{width:100%}.mu{color:var(--mu)}
+.row{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap;justify-content:center}
+.sp{justify-content:space-between;align-items:center}
+.ttl{font:600 21px "Noto Serif JP",serif;letter-spacing:.1em;text-shadow:0 1px 6px var(--bg)}
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px}
+.c{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--pn);border:1px solid var(--ln);border-radius:12px;cursor:pointer;overflow:hidden;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.c big{font:400 30px "Noto Serif JP","Yu Mincho",serif}.c small{font-size:11px;color:var(--mu);max-width:92%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bg{display:block;font:400 64px/1.2 "Noto Serif JP","Yu Mincho",serif}
+.wd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.ch{flex:1 1 auto;margin:3px 0;text-align:center}.ch.on{background:var(--sel);border-color:var(--ac)}
+.o{display:block;width:100%;margin:7px 0;font-size:17px}.o:disabled{color:var(--tx)}
+.o.ok{background:var(--okb);border-color:var(--ok)}.o.ng{background:var(--ngb);border-color:var(--ng)}
+.tb{height:6px;background:var(--bt);border-radius:3px;overflow:hidden;margin-bottom:6px}.tb i{display:block;height:100%;width:100%;background:var(--ac)}
+details{line-height:1.75}
+details summary{cursor:pointer;font-weight:600;color:var(--sk);list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"";flex:none;width:8px;height:8px;margin:0 4px 3px 0;border-right:2px solid var(--mu);border-bottom:2px solid var(--mu);transform:rotate(45deg);transition:transform .45s cubic-bezier(.22,1,.36,1)}
+details.is-open summary::after{transform:rotate(225deg) translate(-2px,-2px)}
+.dc{overflow:hidden;transition:height .45s cubic-bezier(.22,1,.36,1),opacity .35s ease}
+.di{padding-top:8px}
+.cr{font-size:11px;text-align:center;margin:18px 0 0}
+
+/* Навигация */
+nav{position:fixed;z-index:3;left:0;right:0;bottom:0;display:flex;background:var(--nv);border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom,0px);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+nav button{flex:1;border:0;background:none;border-radius:0;padding:7px 0 6px;color:var(--mu);font-size:10px;line-height:1.25}
+nav button b{display:block;font:600 19px "Noto Serif JP",serif}
+nav button.on{color:var(--sk);box-shadow:inset 0 2px var(--ac)}
+
+/* Окно знака: плавно выезжает снизу, фон мягко затемняется и размывается */
+#m{position:fixed;inset:0;z-index:5;display:flex;align-items:flex-end;justify-content:center;visibility:hidden;pointer-events:none;background-color:rgba(0,0,0,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:background-color .45s ease,backdrop-filter .45s ease,-webkit-backdrop-filter .45s ease,visibility 0s linear .5s}
+#m.on{visibility:visible;pointer-events:auto;background-color:var(--ov);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);transition:background-color .45s ease,backdrop-filter .45s ease,-webkit-backdrop-filter .45s ease,visibility 0s}
+#mb{width:100%;max-width:640px;max-height:94%;overflow:auto;background:var(--mdg);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border:1px solid var(--ln);border-radius:18px 18px 0 0;padding:14px;text-align:center;transform:translateY(56px);opacity:0;transition:transform .55s cubic-bezier(.22,1,.36,1),opacity .4s ease}
+#m.on #mb{transform:none;opacity:1}
+.pd{position:relative;width:min(78vw,300px);aspect-ratio:1;margin:10px auto;border:1px solid var(--ln);border-radius:10px;background:linear-gradient(var(--gl),var(--gl)) 0 50%/100% 1px no-repeat,linear-gradient(var(--gl),var(--gl)) 50% 0/1px 100% no-repeat,var(--pdbg)}
+.pd canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
+.pd .g{position:absolute;inset:0;display:grid;place-items:center;font:min(62vw,240px)/1 "Noto Serif JP","Yu Mincho",serif;opacity:0;pointer-events:none}
+.pd .sv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.sv text{font:700 7px system-ui,sans-serif;fill:var(--hot);paint-order:stroke;stroke:var(--md);stroke-width:1.8px;stroke-linejoin:round}
+.hm{min-height:1.5em;font-size:13px}
+.tabs{margin:6px 0 0}
+.tabs .ch{flex:0 0 auto;min-width:54px;margin:0;padding:5px 14px;font:400 22px/1.3 "Noto Serif JP","Yu Mincho",serif}
+
+/* Переключатель внутри вкладки «Правила» */
+.seg{display:flex;gap:4px;padding:4px;margin-bottom:12px;background:var(--pn);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.seg button{flex:1;border:0;background:none;border-radius:10px;padding:8px 2px;font-size:14px;color:var(--mu);transition:background-color .35s ease,color .35s ease}
+.seg button.on{background:var(--ac);color:#fff}
+.pane{display:none}.pane.on{display:block}
+
+/* Справочник */
+.jp{font-family:"Noto Serif JP","Yu Mincho",serif;font-size:1.05em}
+.tw{overflow-x:auto;margin:8px 0;border:1px solid var(--ln);border-radius:10px;background:var(--in)}
+table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.45}
+th,td{padding:7px 4px;border-bottom:1px solid var(--ln);text-align:left;vertical-align:top}
+th{color:var(--sk);font-weight:600}
+tr:last-child td{border-bottom:0}
+td small{color:var(--mu);font-size:11px}
+.ul{padding-left:18px;margin:6px 0}.ul li{margin:6px 0}
+.ex{margin:5px 0;padding:5px 10px;border-left:3px solid var(--ac);background:var(--bt);border-radius:0 8px 8px 0;text-align:left}
+.ex small{display:block;color:var(--mu);font-size:12.5px}
+td .ex{overflow-wrap:anywhere}
+td .jp,th .jp{font-size:1em}
+details p{margin:8px 0}
+.vr{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--ln)}
+.vr:last-child{border-bottom:0}
+.vb{display:flex;align-items:center;gap:8px;flex:none}
+.vb i{font-style:normal;font-size:11px;color:var(--mu);border:1px solid var(--ln);border-radius:6px;padding:1px 6px}
+.vb button{width:38px;height:38px;padding:0;border-radius:50%;font-size:18px;line-height:1}
+
+/* Плавное появление: вкладки, блоки, вопросы теста */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+section.on>*:not(.pane),.pane.on>*,#qz>*{animation:rise .6s cubic-bezier(.22,1,.36,1) both}
+section.on>*:nth-child(2),.pane.on>*:nth-child(2){animation-delay:.05s}
+section.on>*:nth-child(3),.pane.on>*:nth-child(3){animation-delay:.1s}
+section.on>*:nth-child(4),.pane.on>*:nth-child(4){animation-delay:.15s}
+section.on>*:nth-child(5),.pane.on>*:nth-child(5){animation-delay:.2s}
+section.on>*:nth-child(6),.pane.on>*:nth-child(6){animation-delay:.25s}
+section.on>*:nth-child(n+7),.pane.on>*:nth-child(n+7){animation-delay:.3s}
+
+@media (prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+}
+
+/* Уроки */
+.pt{margin-top:14px;padding-top:12px;border-top:1px dashed var(--ln)}
+.pt:first-child{margin-top:2px;padding-top:0;border-top:0}
+.pf{font-weight:600;color:var(--sk);line-height:1.65;overflow-wrap:anywhere}
+.pt p{margin:6px 0}
+rt{font-size:.5em;font-weight:400;color:var(--mu)}
+.ex{line-height:2}
