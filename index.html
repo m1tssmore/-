@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="ru" data-theme="dark"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050506"><title>漢字道場</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/theme.js"></script>
+</head><body>
+<canvas id=sk></canvas>
+<header><span class=hk>桜</span><div><b>漢字道場</b><small>KANJI DOJO</small></div><button id=tg class=tg onclick="toggleTheme()" aria-label="Сменить тему"></button></header>
+<main>
+<section id=v0 class=on>
+ <div class=p><b>Добавить кандзи</b>
+  <input id=kc maxlength=6 placeholder="Иероглиф или слово: 木, 日本">
+  <input id=km placeholder="Значение: дерево">
+  <input id=kr placeholder="Чтения через запятую: き, もく">
+  <button class="b w" onclick=addK()>＋ Добавить</button></div>
+ <div class=gr id=kl></div>
+</section>
+<section id=v1><div class="row sp"><span class=ttl>ひらがな</span><button onclick="tst('h')">Пройти тест</button></div><div class=gr id=hl></div></section>
+<section id=v2><div class="row sp"><span class=ttl>カタカナ</span><button onclick="tst('t')">Пройти тест</button></div><div class=gr id=tl></div></section>
+<section id=v3>
+ <div class=p><b>Добавить слово</b>
+  <input id=wj placeholder="Слово: 日本語">
+  <input id=wr placeholder="Чтение: にほんご">
+  <input id=wt placeholder="Перевод: японский язык">
+  <button class="b w" onclick=aw()>＋ Добавить</button></div>
+ <div id=wl></div>
+</section>
+<section id=v4>
+<div class=seg><button class=on>Правила</button><button>Грамматика</button><button>Глаголы</button><button>Уроки</button></div>
+<div class="pane on" id=gr0>
+<details class=p open><summary>文の形 · Порядок слов</summary>Сказуемое всегда стоит в конце: 私は水を飲む — «Я воду пью». Определение стоит перед определяемым словом, а японский язык не различает рода и числа.</details>
+<details class=p><summary>助詞 · Частицы</summary><b>は</b> (читается wa) — тема; <b>が</b> — подлежащее; <b>を</b> (читается o) — прямое дополнение; <b>に</b> — время, цель, место нахождения; <b>で</b> — место действия, средство; <b>の</b> — принадлежность; <b>へ</b> (читается e) — направление; <b>と</b> — «и», «вместе с»; <b>も</b> — «тоже»; <b>か</b> — вопрос в конце фразы.</details>
+<details class=p><summary>です · Связка</summary>これは本です — «Это книга». Отрицание: ではありません или じゃない. Прошедшее: でした. Вежливый стиль — です／ます, простой — だ и словарная форма глагола.</details>
+<details class=p><summary>動詞 · Глаголы</summary>Словарная форма оканчивается на -u: 食べる, 書く. Вежливая: 食べます, отрицание 食べません, прошедшее 食べました. Простое отрицание: 食べない. Неправильные глаголы: する и 来る.</details>
+<details class=p><summary>形容詞 · Прилагательные</summary>い-прилагательные: 高い → 高くない, 高かった. な-прилагательные: 静か → 静かな人, 静かじゃない.</details>
+<details class=p open><summary>書き方 · Порядок черт</summary>1) сверху вниз; 2) слева направо; 3) горизонталь раньше вертикали (十); 4) центр раньше боковых частей (小, 水); 5) рамка раньше содержимого, нижняя черта рамки — последней (国, 日); 6) вертикаль, пронзающая знак, — в конце (中); 7) точки — в конце (犬).</details>
+<details class=p><summary>読み方 · Чтения и письменности</summary>Он-ёми — китайское чтение, чаще в сложных словах (山脈 — さんみゃく). Кун-ёми — японское чтение, чаще отдельно и с окуригана — хвостом из хираганы (食べる, 高い). Хирагана нужна для грамматики и японских слов, катакана — для заимствований и имён (コーヒー), кандзи — для смысловой основы слова.</details>
+<details class=p><summary>書き方 · Знаки хираганы и катаканы</summary>Дакутэн ゛ озвончает (か→が, は→ば), хандакутэн ゜ даёт «п» (は→ぱ). Малые ゃ ゅ ょ сливаются с предыдущим слогом: きゃ, しゅ, ちょ. Малая っ удваивает согласный: きって. Долгие гласные: в хирагане добавляется あ, い или う (おかあさん), в катакане — знак ー. Знаки препинания: 。 точка, 、 запятая, 「」 кавычки.</details>
+<p class="mu cr">Порядок черт: KanjiVG © Ulrich Apel, лицензия CC BY-SA 3.0 (kanjivg.tagaini.net)</p>
+</div>
+<div class=pane id=gr1></div>
+<div class=pane id=gr2></div>
+<div class=pane id=gr3></div>
+</section>
+<section id=v5><div id=st></div><div id=qz style="display:none"></div></section>
+</main>
+<div id=m onclick="if(event.target==this)cl()"><div id=mb></div></div>
+<nav><button class=on onclick=go(0)><b>漢</b>Кандзи</button><button onclick=go(1)><b>あ</b>Хирагана</button><button onclick=go(2)><b>ア</b>Катакана</button><button onclick=go(3)><b>語</b>Слова</button><button onclick=go(4)><b>文</b>Правила</button><button onclick=go(5)><b>試</b>Тесты</button></nav>
+<script src="js/strokes.js"></script>
+<script src="js/app.js"></script>
+<script src="js/grammar.js"></script>
+<script src="js/lessons.js"></script>
+<script src="js/pwa.js"></script>
+</body></html>
